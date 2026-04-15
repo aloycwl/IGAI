@@ -1,0 +1,17 @@
+# Exported from Render on 2025-04-14T13:31:54Z
+services:
+- type: web
+  name: insightgenesis
+  runtime: node
+  repo: https://github.com/aloycwl/insightgenesis
+  rootDir: backend
+  plan: free
+  envVars:
+  - key: PK
+    sync: false
+  - key: PJ
+    sync: false
+  region: singapore
+  buildCommand: npm install
+  startCommand: npm start
+version: "1"
