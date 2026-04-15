@@ -1,0 +1,482 @@
+.privacy-root {
+  min-height: 100vh;
+  background: #0a1a1f;
+  padding: 120px 100px 50px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Satoshi', Arial, sans-serif;
+}
+
+.privacy-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.privacy-title {
+  color: #8feaff;
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.privacy-updated {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.privacy-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.privacy-section-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 36px 0 12px 0;
+  text-align: left;
+}
+
+.privacy-section-subtitle {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 24px 0 8px 0;
+  text-align: left;
+}
+
+.privacy-section-subsubtitle {
+  color: #8feaff;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 18px 0 8px 0;
+  text-align: left;
+}
+
+.privacy-list {
+  color: #fff;
+  font-size: 1.05rem;
+  text-align: left;
+  margin: 0 0 18px 0;
+  max-width: 800px;
+  line-height: 2;
+  padding-left: 24px;
+  list-style-position: outside;
+}
+
+.privacy-list li {
+  margin-bottom: 8px;
+}
+
+.privacy-content a {
+  color: #8feaff;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .privacy-title {
+    font-size: 2.2rem;
+  }
+  .privacy-content {
+    padding: 0 12px;
+  }
+  .privacy-section-title {
+    font-size: 1.1rem;
+  }
+  .privacy-section-subtitle {
+    font-size: 1rem;
+  }
+  .privacy-desc, .privacy-list {
+    font-size: 0.98rem;
+  }
+}
+
+.Interpretation-Definitions-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Interpretation-Definitions-title {
+  color: #8feaff;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Interpretation-Definitions-subtitle {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 24px 0 8px 0;
+}
+
+.Interpretation-Definitions-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.Interpretation-Definitions-list {
+  color: #fff;
+  font-size: 1.08rem;
+  margin: 18px 0 0 0;
+  padding-left: 24px;
+  line-height: 2.1;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.Interpretation-Definitions-list li {
+  margin-bottom: 8px;
+}
+
+.Interpretation-Definitions-list a {
+  color: #8feaff;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .Interpretation-Definitions-title {
+    font-size: 1.2rem;
+  }
+  .Interpretation-Definitions-subtitle {
+    font-size: 1rem;
+  }
+  .Interpretation-Definitions-desc, .Interpretation-Definitions-list {
+    font-size: 0.98rem;
+  }
+}
+
+.Collect-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Collect-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Collect-data-subtitle {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 24px 0 8px 0;
+}
+
+.Collect-data-subsubtitle {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 18px 0 8px 0;
+}
+
+.Collect-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.Collect-data-list {
+  color: #fff;
+  font-size: 1.08rem;
+  margin: 0 0 18px 0;
+  padding-left: 24px;
+  line-height: 2.1;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.Collect-data-list li {
+  margin-bottom: 8px;
+}
+
+.Collect-data-list ul {
+  padding-left: 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.Collect-data-list a {
+  color: #8feaff;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .Collect-data-title {
+    font-size: 1.1rem;
+  }
+  .Collect-data-subtitle {
+    font-size: 1rem;
+  }
+  .Collect-data-desc, .Collect-data-list {
+    font-size: 0.98rem;
+  }
+}
+
+/* Use of Your Personal Data Section */
+.Use-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Use-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Use-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.Use-data-list {
+  color: #fff;
+  font-size: 1.08rem;
+  margin: 0 0 18px 0;
+  padding-left: 24px;
+  line-height: 2.1;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.Use-data-list li {
+  margin-bottom: 8px;
+}
+
+/* Retention of Your Personal Data Section */
+.Retention-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Retention-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Retention-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Transfer of Your Personal Data Section */
+.Transfer-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Transfer-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Transfer-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Delete Your Personal Data Section */
+.Delete-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Delete-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Delete-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Disclosure of Your Personal Data Section */
+.Disclosure-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Disclosure-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Disclosure-data-subtitle {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 24px 0 8px 0;
+}
+
+.Disclosure-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.Disclosure-data-list {
+  color: #fff;
+  font-size: 1.08rem;
+  margin: 0 0 18px 0;
+  padding-left: 24px;
+  line-height: 2.1;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.Disclosure-data-list li {
+  margin-bottom: 8px;
+}
+
+/* Security of Your Personal Data Section */
+.Security-data-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Security-data-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Security-data-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Links to Other Websites Section */
+.Links-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Links-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Links-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Changes to this Privacy Policy Section */
+.Changes-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Changes-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Changes-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Contact Us Section */
+.Contact-section {
+  margin: 48px 0 0 0;
+  text-align: left;
+}
+
+.Contact-title {
+  color: #8feaff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.Contact-desc {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+/* Responsive styles for all sections */
+@media (max-width: 700px) {
+  .Use-data-title,
+  .Retention-data-title,
+  .Transfer-data-title,
+  .Delete-data-title,
+  .Disclosure-data-title,
+  .Security-data-title,
+  .Links-title,
+  .Changes-title,
+  .Contact-title {
+    font-size: 1.1rem;
+  }
+  .Use-data-desc,
+  .Retention-data-desc,
+  .Transfer-data-desc,
+  .Delete-data-desc,
+  .Disclosure-data-desc,
+  .Security-data-desc,
+  .Links-desc,
+  .Changes-desc,
+  .Contact-desc,
+  .Use-data-list,
+  .Disclosure-data-list {
+    font-size: 0.98rem;
+  }
+  .Disclosure-data-subtitle {
+    font-size: 1rem;
+  }
+} 

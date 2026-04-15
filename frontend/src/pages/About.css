@@ -1,0 +1,164 @@
+/* About Page Styles */
+.about {
+  min-height: 100vh;
+}
+
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.text-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.mission-visual {
+  text-align: center;
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.visual-element {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.values {
+  padding: 5rem 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.team {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.team-member {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.member-avatar {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.member-role {
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.timeline {
+  padding: 5rem 0;
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.timeline-year {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  margin-right: 2rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.timeline-content {
+  flex: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.contact-cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .timeline-year {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+} 

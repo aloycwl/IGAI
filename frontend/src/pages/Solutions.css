@@ -1,0 +1,224 @@
+
+.solutions-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0f1c;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 28, 0.6);
+  z-index: 2;
+}
+
+.solutions-hero .container {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .solutions-hero {
+    height: 80vh;
+    min-height: 500px;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+  
+  .empowering-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .empowering-visual {
+    height: 400px;
+  }
+  
+  .health-metrics {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .telehealth-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .telehealth-visual {
+    height: 400px;
+  }
+  
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cases-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .pharmaceutical-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .pharmaceutical-visual {
+    height: 500px;
+    padding: 20px;
+  }
+  
+  .percentage-circle {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+  }
+  
+  .percentage-display {
+    font-size: 2rem;
+  }
+  
+  .analytics-title {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .metrics-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .empowering-individuals,
+  .telehealth-insurance,
+  .pharmaceutical-companies,
+  .human-resources-section,
+  .candidate-assessment,
+  .personalized-student-guidance,
+  .secure-data-driven-decisions,
+  .control-data-section,
+  .secure-transparent-section,
+  .new-data-section {
+    padding: 60px 0;
+  }
+  
+  .hr-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .hr-visual {
+    gap: 20px;
+  }
+  
+  .trait-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .assessment-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .candidate-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .stats-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .education-grid,
+  .educators-grid,
+  .control-data-grid,
+  .secure-transparent-grid,
+  .new-data-grid {
+    grid-template-columns: 1fr;    
+    text-align: center;
+  }
+  
+  .education-visual,
+  .educators-visual,
+  .control-data-visual,
+  .secure-transparent-visual,
+  .new-data-visual {
+    height: 400px;
+  }
+  
+  .graduation-cap,
+  .graduation-cap-large {
+    font-size: 3rem;
+  }
+    
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+    letter-spacing: 0.05em;
+  }
+  
+  .solutions-hero .container {
+    padding: 0 15px;
+  }
+}
+

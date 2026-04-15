@@ -1,0 +1,919 @@
+/* Empowering Individuals Section */
+.empowering-individuals {
+    position: relative;
+    padding: 50px 50px;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg-color1);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .section-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* min-width: 100%;
+    min-height: 100%; */
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    object-fit: cover;
+  }
+  
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 28, 0.7);
+    z-index: 2;
+  }
+  
+  .text-left.personal-insights-line {
+    display: block;
+  }
+  .empowering-individuals .container, .telehealth-insurance .container, .pharmaceutical-companies .container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin: 0 !important;
+  }
+  
+  .empowering-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 80vh;
+    border: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .empowering-content {
+    color: #ffffff;
+    padding: 40px;
+    border-right: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .section-badge {
+    margin-bottom: 30px;
+  }
+  
+  .badge-dots {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .dot.active {
+    background: #00bcd4;
+  }
+  
+  .empowering-title, .telehealth-title, .pharmaceutical-title {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .empowering-title .text-left, .telehealth-title .text-left {
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+
+  .pharmaceutical-title .text-left {
+    margin-left: 60px;
+    margin-top: 10px;
+  }
+  
+  
+  .health-features h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+  
+  .feature-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 5px;
+  }
+  
+  .dot-blue {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00bcd4;
+  }
+  
+  .feature-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .feature-text strong {
+    color: #ffffff;
+  }
+  
+  .empowering-visual {
+    position: relative;
+    height: 800px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+  }
+  
+  .visual-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  .health-dashboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0, 15, 30, 0.3);
+    padding: 40px;
+  }
+  
+  .stat-diamond {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #32D3FE;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .stat-diamond.top {
+    top: 75px;
+    left: 82px;
+  }
+  
+  .stat-diamond.bottom {
+    bottom: 450px;
+    right: 40px;
+  }
+  
+  .stat-diamond .percentage {
+    color: #000000;
+    font-weight: 400;
+    font-size: 30px;
+    transform: rotate(-45deg);
+  }
+  
+  .center-stat {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 111px;
+  }
+  
+  .main-percentage {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #00bcd4;
+    margin-bottom: 10px;
+  }
+  
+  .stat-label {
+    color: #ffffff;
+    font-size: 1rem;
+  }
+  
+  .health-metrics {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 280px;
+  }
+  
+  .metric-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+  
+  .metric-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    min-width: 100px;
+  }
+  
+  .metric-bar {    
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .metric-fill {
+    height: 100%;
+    background: #00bcd4;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  
+  .metric-value {
+    color: #00bcd4;
+    font-size: 18px;
+    font-weight: 400;
+    min-width: 40px;
+    text-align: right;
+  }
+  
+  /* Telehealth & Insurance Section */
+  .telehealth-insurance {
+    position: relative;
+    padding: 50px;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg-color1);
+  }
+  
+  /* .telehealth-insurance .container {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  } */
+  
+  .telehealth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 80vh;
+    border: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .telehealth-content {
+    color: #ffffff;
+    padding: 40px 0;
+    border-right: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  /* .telehealth-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  } */
+  
+  .telehealth-description {
+    font-size: 28px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 100%;
+    text-indent: 1.5em;
+  }
+  
+  .telehealth-features {
+    padding: 40px;
+    border-top: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .telehealth-insurance .cta-section, .pharmaceutical-companies .cta-section {
+    margin-top: 0;    
+    padding: 0 40px;
+  }
+  
+  .cta-section .cta-button {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  .arrow-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  
+  .cta-note {
+    font-size: 16px;
+    color: #00bcd4;
+    margin: 0;
+    font-style: italic;
+  }
+  
+  .telehealth-visual {
+    position: relative;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .brain-visualization {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 15, 30, 0.3);
+  }
+  
+  .brain-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .brain-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><radialGradient id="brain-gradient"><stop offset="0%" stop-color="%2300bcd4" stop-opacity="0.8"/><stop offset="100%" stop-color="%2300bcd4" stop-opacity="0.2"/></radialGradient></defs><ellipse cx="150" cy="120" rx="120" ry="80" fill="url(%23brain-gradient)" opacity="0.6"/><ellipse cx="150" cy="180" rx="100" ry="60" fill="url(%23brain-gradient)" opacity="0.4"/></svg>') center/contain no-repeat;
+    animation: brain-pulse 3s ease-in-out infinite;
+  }
+  
+  .brain-glow {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.3) 0%, transparent 70%);
+    animation: brain-glow 4s ease-in-out infinite alternate;
+  }
+  
+  @keyframes brain-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes brain-glow {
+    0% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 0.6;
+    }
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 600;
+  }
+  
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .case-card {
+    background: #f7fafc;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .case-icon {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    display: block;
+  }
+  
+  .case-card h3 {
+    font-size: 1.4rem;
+    color: #2d3748;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  
+  .case-card p {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  /* Pharmaceutical Companies Section */
+  .pharmaceutical-companies {
+    position: relative;
+    padding: 50px;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg-color1);
+  }
+  
+  /* .pharmaceutical-companies .container {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  } */
+  
+  .pharmaceutical-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 80vh;
+    border: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .pharmaceutical-content {
+    color: #ffffff;
+    height: 100%;
+    padding: 40px 0;
+    border-right: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  /* .pharmaceutical-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  } */
+  
+  .pharmaceutical-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 90%;
+  }
+  
+  .quote-section {
+    margin-top: 32px;
+    padding: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .founder-quote {
+    font-size: 20px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    text-indent: 1.5em;
+  }
+  
+  /* .founder-quote:before {
+    content: open-quote;
+  }
+  
+  .founder-quote:after {
+    content: close-quote;
+  } */
+  
+  .quote-attribution {
+    font-size: 0.9rem;
+    color: #8FEAFF;
+  }
+  
+  .pharmaceutical-visual {
+    position: relative;
+    height: 600px;
+    
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .analytics-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .analytics-title {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;    
+  }
+  
+  .percentage-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    border: 2px solid #ddd;
+  }
+  
+  .circle-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    object-fit: cover;
+  }
+
+  .empowering-individuals .circle-video-bg {
+      bottom: 0;
+      width: 200px;
+      height: 200px;
+      min-width: auto;
+      min-height: auto;
+    }
+  
+  
+  .circle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 15, 30, 0.4);
+    z-index: 2;
+  }
+  
+  .percentage-display {
+    position: relative;
+    z-index: 3;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #00bcd4;
+    text-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+  }
+  
+  .metrics-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 3rem;
+    height: 200px;
+  }
+
+  .pharmaceutical-companies .burnout-metrics {
+    gap: 40px;
+  }
+  
+  .metric-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .metric-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .metric-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .metric-bar-full {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .metric-fill-blue {
+    height: 100%;
+    background: #00bcd4;
+    border-radius: 3px;
+    transition: width 0.8s ease;
+  }
+  
+  .metric-value-right {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: right;
+  }
+
+  /* Health & Wellness Solutions Styles */
+.health-wellness {
+  overflow-x: hidden;
+}
+
+/* Custom font styling for specific characters */
+.parabole-font {
+  font-family: 'Parabole', sans-serif;
+}
+
+
+
+.hero-title {
+  text-align: left !important;
+}
+
+.section-badge, .telehealth-title, .telehealth-description, .pharmaceutical-title, .pharmaceutical-description {
+  padding: 0 40px;
+}
+
+@media (max-width: 992px) {
+
+  .health-wellness .hero-video-bg {
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+  .health-wellness .hero-content {
+      padding: 0 20px;
+  }
+
+  .health-wellness .hero-title, .health-wellness .parabole-font {
+    font-size: 47px;
+    line-height: 70px;
+  }
+
+  .empowering-grid, .telehealth-grid, .pharmaceutical-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .empowering-content, .telehealth-content, .pharmaceutical-content {
+    padding: 20px;
+  }
+
+  .empowering-title {
+    font-size: 20px;
+    text-align: left;
+    margin-top: 32px;
+  }
+
+  .empowering-individuals .parabole-font, .telehealth-insurance .parabole-font, .pharmaceutical-companies .parabole-font  {
+    font-size: 20px;
+  }
+
+  .empowering-description, .telehealth-description, .pharmaceutical-description{
+    font-size: 16px;
+    padding: 20px 0;
+    text-align: left;
+    line-height: 1.6;    
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 100%;
+    text-indent: 1.5em;
+    margin:0;
+  }
+  .telehealth-features{
+    padding: 30px 0;
+  }
+  .health-features h3 {
+    font-size: 26px;
+    text-align: left;
+  }
+
+  .empowering-individuals .feature-item, .telehealth-insurance .feature-item {
+    align-items: center;
+  }
+
+  .empowering-individuals .feature-text {
+    font-size: 16px;
+    text-align: left;
+  }
+  .feature-item .feature-text {
+    font-size: 16px !important;
+    text-align: left;
+  }
+
+
+  .empowering-individuals .visual-video-bg {    
+    object-fit: cover;
+  }
+
+  .percentage {
+    font-size: 24px !important;
+  }
+
+  .stat-diamond {
+    width: 60px;
+    height: 60px;
+  }
+
+  .stat-diamond.top {
+    top: 30px;
+    left: 26px;
+  }
+
+
+  .stat-diamond.bottom span {
+    font-size: 16px !important;
+  }
+
+  .telehealth-visual {
+    height: 400px;
+  }
+
+  .telehealth-visual .visual-video-bg {
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .quote-section {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .pharmaceutical-content {
+    width: 100%;
+    border: none;
+  }
+
+  .pharmaceutical-companies .section-badge {
+    width: 100%;    
+  }
+
+  .founder-quote {
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .pharmaceutical-companies .analytics-title {
+    font-size: 20px;
+  }
+
+  .pharmaceutical-visual {
+    height: 100%;
+  }
+
+  /* .pharmaceutical-companies  .metrics-container {
+    grid-template-columns: 1fr;
+    height: fit-content;
+  } */
+
+  .pharmaceutical-companies .burnout-metrics {
+    height: 200px;
+  }
+
+  .pharmaceutical-companies .metric-label {
+    text-align: left;
+  }
+  .health-wellness .solutions-hero {
+    align-items: center;
+  }  
+  .health-wellness .solutions-hero .container {   
+    margin: 0 auto;
+    margin-right: 0px;    
+  }  
+  .health-wellness .solutions-hero .container .hero-title, .health-wellness .solutions-hero .container .parabole-font {
+    font-size: 70px;      
+    line-height: 90px;
+  }
+  .stat-diamond.bottom {
+    bottom: 450px;
+    right: 20px;
+  }
+  .telehealth-insurance .cta-section, .pharmaceutical-companies .cta-section {
+    padding: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .empowering-individuals .container, .telehealth-insurance .container, .pharmaceutical-companies .container {
+    padding: 0px !important;
+  }
+  .empowering-individuals .visual-video-bg {
+    height: 500px;
+  }
+  .health-wellness .metric-label{
+    text-align: left;
+  }
+
+  .pharmaceutical-companies .burnout-metrics {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .health-wellness .hero-video-bg {
+    position: absolute;
+    transform: rotate(270deg) translate(-0%, -50%);
+    transform-origin: center center;
+    height: 100%;
+    width: 100vh;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  .health-wellness .solutions-hero .container .hero-title, .health-wellness .solutions-hero .container .parabole-font {
+    font-size: 32px;
+    line-height: 40px;    
+  }
+  .health-wellness .solutions-hero .container {
+    margin: 0 0 300px 0;   
+  }
+  .empowering-individuals, .telehealth-insurance, .pharmaceutical-companies {
+    padding: 50px 20px
+  }
+  .empowering-individuals .container, .telehealth-insurance .container, .pharmaceutical-companies .container {
+    padding: 0px;
+  }
+  
+  .metrics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+  .metrics-container > * {
+    width: 100%;
+    max-width: 320px;
+  }
+  .metrics-container > *:nth-child(odd),
+  .metrics-container > *:nth-child(even) {
+    align-self: center;
+    text-align: center;
+  }
+}

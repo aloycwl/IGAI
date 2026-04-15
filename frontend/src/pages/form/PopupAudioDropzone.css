@@ -1,0 +1,115 @@
+.popup-upload-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-upload-modal {
+  background: #181c20;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.32);
+  padding: 36px 32px 28px 32px;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  font-family: inherit;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-upload-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.audio-dropzone-box {
+  width: 90%;
+  max-width: 540px;
+  height: 220px;
+  border: 2px dashed #8feaff;
+  border-radius: 16px;
+  background: #23272e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0 32px 0;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.audio-dropzone-box:hover {
+  border-color: #1769ff;
+}
+
+.audio-dropzone-icon {
+  font-size: 2.8rem;
+  color: #8feaff;
+  margin-bottom: 18px;
+}
+
+.audio-dropzone-text {
+  color: #b3b3b3;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.audio-dropzone-note {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin: 18px 0 32px 0;
+  text-align: center;
+}
+
+.audio-dropzone-analyze {
+  width: 320px;
+  max-width: 90%;
+  background: #8feaff;
+  color: #0a2536;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: block;
+}
+
+.audio-dropzone-analyze:disabled {
+  background: #b3b3b3;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .popup-upload-modal {
+    max-width: 98vw;
+    padding: 18px 4px 18px 4px;
+  }
+  .audio-dropzone-box {
+    height: 120px;
+    font-size: 1rem;
+  }
+  .audio-dropzone-analyze {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+} 

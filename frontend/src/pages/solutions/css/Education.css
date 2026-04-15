@@ -1,0 +1,450 @@
+/* Education Hero Section */
+.education .solutions-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-color1);
+}
+
+.hero-video-bg {
+  position: absolute;
+  z-index: 1;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 28, 0.6);
+  z-index: 2;
+}
+
+.education .solutions-hero .container {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 1200px; 
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 90px;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1;
+  margin-left: auto;
+  text-transform: uppercase;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Personalized Student Guidance Section */
+.personalized-student-guidance {
+    position: relative;
+    padding: 80px 60px;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color1);
+  }
+  
+  .personalized-student-guidance .container {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    margin: 0 auto;
+    
+  }
+  
+  .education-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;        
+    border: 1px solid rgba(179, 179, 179, 0.3);
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .education-content {
+    color: #ffffff;
+    padding: 40px;
+    border-right: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .education-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  .education-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+  }
+  
+  .education-visual {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .education-bg-container {
+    position: relative;
+    width: 100%;
+    height: 100%;    
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .education-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .education-overlay-graphics {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .central-icon {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .graduation-cap {
+    font-size: 4rem;
+    color: #00bcd4;
+    text-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .icon-item {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #00bcd4;
+    background: rgba(0, 188, 212, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    backdrop-filter: blur(10px);
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .icon-1 {
+    top: 15%;
+    right: 20%;
+    animation-delay: 0s;
+  }
+  
+  .icon-2 {
+    top: 35%;
+    right: 10%;
+    animation-delay: 0.6s;
+  }
+  
+  .icon-3 {
+    bottom: 25%;
+    right: 15%;
+    animation-delay: 1.2s;
+  }
+  
+  .icon-4 {
+    bottom: 15%;
+    left: 25%;
+    animation-delay: 1.8s;
+  }
+  
+  .icon-5 {
+    top: 25%;
+    left: 15%;
+    animation-delay: 2.4s;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Secure Data-Driven Decisions for Educators Section */
+  .secure-data-driven-decisions {
+    position: relative;
+    padding: 80px 60px;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg-color1);
+  }
+  
+  .secure-data-driven-decisions .container {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    margin: 0 auto;    
+  }
+  
+  .educators-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(179, 179, 179, 0.3);
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .educators-content {
+    color: #ffffff;
+    padding: 40px;
+    border-right: 1px solid rgba(179, 179, 179, 0.3);
+  }
+  
+  .educators-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  .educators-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+  }
+  
+  .educators-visual {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .educators-bg-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .educators-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+@media (max-width: 992px) {
+  .education-grid,
+  .educators-grid {
+    grid-template-columns: 1fr;    
+  }
+  .badge-dots {
+    margin-bottom: 20px;
+  }
+  .education-content,
+  .educators-content {
+    border-right: none;
+    border-bottom: 1px solid rgba(179, 179, 179, 0.3);
+    padding-bottom: 32px;
+  }
+  .education .solutions-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg-color1);
+  }
+  
+  .education .solutions-hero .hero-video-bg {
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    object-fit: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 28, 0.6);
+    z-index: 2;
+  }
+  
+  #education-hero-container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 1200px;
+    padding: 0 20px;
+    width: fit-content;
+    margin-right: 60px ;
+    margin-top: 0;
+  }
+  #education-hero-container .hero-title .parabole-letter{
+    font-size: 90px;    
+  }
+  
+  .education .solutions-hero .container .hero-title {
+    font-size: 90px;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1;
+    margin-left: auto;
+    text-transform: uppercase;
+    font-family: 'Satoshi', sans-serif;      
+  }
+}
+
+@media (max-width: 768px) {
+  .personalized-student-guidance {
+    padding: 40px 20px;
+  }
+  .education-content{
+    text-align: left;
+  }
+  .badge-dots {
+    margin-bottom: 20px;
+  }
+  .cta-section{
+    text-align: center;
+  }
+  .cta-button {        
+    width: fit-content;
+  }
+  .secure-data-driven-decisions{
+    padding: 40px 20px;
+  }
+  .educators-content{
+    text-align: left;
+  }
+    
+}
+
+@media (max-width: 576px) {
+  .education .solutions-hero .container .hero-title,
+  #education-hero-container .hero-title .parabole-letter{
+    font-size: 32px;    
+  }
+  .education .solutions-hero .hero-video-bg{
+    position: absolute;
+    transform: rotate(270deg) translate(-0%, -50%);
+    transform-origin: center center;
+    height: 100%;
+    width: 100vh;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    object-fit: cover;
+  }
+
+  #education-hero-container{
+    padding-bottom: 300px !important;
+  }
+  
+  .personalized-student-guidance {
+    padding: 40px 20px;
+  }
+  .personalized-student-guidance .container,
+  .secure-data-driven-decisions .container{
+    padding: 0px !important;
+  }
+  .education-title{
+    font-size: 24px;
+  }
+  .education-content{
+    padding: 20px;
+    text-align: left;
+  }
+  .education-visual{
+    height: 300px;
+  }
+  .educators-title{
+    font-size: 24px;
+  }
+  .educators-content{
+    padding: 20px;
+    text-align: left;
+  }
+  .educators-visual{
+    height: 300px;
+  }
+}
