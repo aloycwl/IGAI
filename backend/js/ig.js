@@ -3,103 +3,118 @@ import fetch from "node-fetch";
 import ffmpegPath from "ffmpeg-static";
 import fs from "fs";
 import FormData from "form-data";
-import { dbV as D } from "./supabase.js";
-import { execa as X } from "execa";
-import { store as O } from "./onchain.js";
+import { dbV as getVoiceType } from "./supabase.js";
+import { execa } from "execa";
+import { store as storeOnchain } from "./onchain.js";
 import { aa, IK, IS } from "./config.js";
-const I = "https://api.insightgenie.ai/";
 
-async function auth() {
+const INSIGHT_GENIE_API = "https://api.insightgenie.ai/";
+
+async function getAuthHeaders() {
   try {
+    const response = await axios.post(`${INSIGHT_GENIE_API}auth/authenticate`, {
+      key: IK,
+      secret: IS
+    });
     return {
-      Authorization: `Bearer ${
-        (await axios.post(`${I}auth/authenticate`, { key: IK, secret: IS }))
-          .data.token
-      }`,
+      Authorization: `Bearer ${response.data.token}`,
     };
-  } catch (e) {
-    return e;
+  } catch (error) {
+    console.error("Auth Error:", error);
+    throw new Error("Failed to authenticate with InsightGenie");
   }
 }
 
-export async function print(e, c, n) {
+export async function print(email, phoneCode, phoneNumber) {
   try {
-    return (
-      await axios.post(
-        `${I}digital-footprint`,
-        { email: e, phoneCode: c, phoneNumber: n },
-        { headers: await auth() },
-      )
-    ).data;
-  } catch (e) {
-    return e;
+    const headers = await getAuthHeaders();
+    const response = await axios.post(
+      `${INSIGHT_GENIE_API}digital-footprint`,
+      { email, phoneCode, phoneNumber },
+      { headers }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Print Error:", error);
+    throw error;
   }
 }
 
-export async function iframe(g, y) {
+export async function iframe(gender, age) {
   try {
-    return (
-      await axios.post(
-        `${I}face-scan/generate-video-token`,
-        {
-          clientId: "igai",
-          age: parseInt(y),
-          gender: g,
-          showResults: "display",
-          isVoiceAnalysisOn: false,
-          forceFrontCamera: true,
-        },
-        { headers: await auth() },
-      )
-    ).data.videoIframeUrl;
-  } catch (e) {
-    return e;
+    const headers = await getAuthHeaders();
+    const response = await axios.post(
+      `${INSIGHT_GENIE_API}face-scan/generate-video-token`,
+      {
+        clientId: "igai",
+        age: parseInt(age, 10),
+        gender,
+        showResults: "display",
+        isVoiceAnalysisOn: false,
+        forceFrontCamera: true,
+      },
+      { headers }
+    );
+    return response.data.videoIframeUrl;
+  } catch (error) {
+    console.error("Iframe Generate Error:", error);
+    throw error;
   }
 }
 
-export async function voice(f, v, a, r) {
+export async function voice(file, voiceTypeId, address, res) {
   try {
-    const n = `${a}_${Date.now()}_v.aac`,
-      p = `tmp/${n}`,
-      d = new FormData();
+    const filename = `${address}_${Date.now()}_v.aac`;
+    const tempPath = `tmp/${filename}`;
+    const formData = new FormData();
 
-    await X(ffmpegPath, ["-i", f.path, "-c:a", "aac", p]);
-    d.append("audio", fs.createReadStream(p));
-    d.append("isSendingWebHookToInstitution", "false");
-    d.append("audioServiceType", await D(v));
-    d.append("channelType", "0");
-    fs.unlink(f.path, () => {});
+    await execa(ffmpegPath, ["-i", file.path, "-c:a", "aac", tempPath]);
 
-    const h = await auth(),
-      s = (
-        await (
-          await fetch(`${I}upload-file/audio`, {
-            method: "POST",
-            headers: h,
-            body: d,
-          })
-        ).json()
-      ).id;
+    const voiceType = await getVoiceType(voiceTypeId);
 
-    let t;
+    formData.append("audio", fs.createReadStream(tempPath));
+    formData.append("isSendingWebHookToInstitution", "false");
+    formData.append("audioServiceType", voiceType);
+    formData.append("channelType", "0");
+
+    fs.unlink(file.path, (err) => { if (err) console.error("Cleanup error:", err); });
+
+    const headers = await getAuthHeaders();
+
+    const uploadResponse = await fetch(`${INSIGHT_GENIE_API}upload-file/audio`, {
+      method: "POST",
+      headers,
+      body: formData,
+    });
+    const uploadData = await uploadResponse.json();
+    const scoreId = uploadData.id;
+
+    let resultData;
 
     while (true) {
-      const j = await (
-        await fetch(`${I}get-score?id=${s}`, { headers: h })
-      ).json();
-      console.log(j);
-      if (j.scoreId) {
-        t = j;
+      const scoreResponse = await fetch(`${INSIGHT_GENIE_API}get-score?id=${scoreId}`, {
+        headers
+      });
+      const scoreData = await scoreResponse.json();
+
+      console.log("Voice analysis status:", scoreData);
+
+      if (scoreData.scoreId) {
+        resultData = scoreData;
         break;
       }
       await new Promise((resolve) => setTimeout(resolve, 2000));
     }
 
-    O(t, a, v, aa);
-    fs.unlink(p, () => {});
+    // Call storeOnchain but do not await if we want to immediately return to user.
+    // However, storeOnchain uses a queue, so we just call it.
+    storeOnchain(resultData, address, voiceTypeId, aa);
 
-    return r.json(t);
-  } catch (e) {
-    return e;
+    fs.unlink(tempPath, (err) => { if (err) console.error("Cleanup error:", err); });
+
+    return res.json(resultData);
+  } catch (error) {
+    console.error("Voice Analysis Error:", error);
+    return res.status(500).json({ error: error.message || "Failed to process voice" });
   }
 }

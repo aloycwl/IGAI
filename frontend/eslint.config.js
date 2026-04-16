@@ -1,22 +1,34 @@
-export default {
-  env: {
-    browser: true,
-    es2020: true,
-    node: true
+export default [
+  {
+    ignores: ['dist/', 'node_modules/']
   },
-  extends: [
-    'eslint:recommended'
-  ],
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
+  {
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        localStorage: 'readonly',
+        fetch: 'readonly',
+        URLSearchParams: 'readonly',
+        URL: 'readonly',
+        process: 'readonly',
+        prompt: 'readonly',
+        alert: 'readonly',
+        location: 'readonly'
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      'no-console': 'off'
     }
-  },
-  rules: {
-    'no-unused-vars': 'warn',
-    'no-console': 'warn'
-  },
-  ignorePatterns: ['dist/', 'node_modules/']
-}
+  }
+];

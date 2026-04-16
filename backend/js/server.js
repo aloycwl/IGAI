@@ -3,72 +3,123 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import { aa, MA, GH } from "./config.js";
-import { dbAuth as A } from "./supabase.js";
-import { fileURLToPath as P } from "url";
-import { iframe as F, print as G, voice as V } from "./ig.js";
-import { ref as R, store as S, getInfo as I } from "./onchain.js";
-import { Magic as M } from "@magic-sdk/admin";
-import { mm } from "./migrate.js";
+import { dbAuth as authenticate } from "./supabase.js";
+import { fileURLToPath } from "url";
+import { iframe as getIframe, print as getPrint, voice as processVoice } from "./ig.js";
+import { ref as saveRef, store as storeOnchain, getInfo as getOnchainInfo } from "./onchain.js";
+import { Magic } from "@magic-sdk/admin";
+import { mm as migrate } from "./migrate.js";
 
-const e = express(),
-  u = multer({ dest: "tmp/" });
-e.use(cors());
-e.use(express.json());
-e.use(
+const app = express();
+const upload = multer({ dest: "tmp/" });
+
+app.use(cors());
+app.use(express.json());
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.use(
   express.static(
-    path.join(path.dirname(P(import.meta.url)), "../../frontend/dist"),
-  ),
+    path.join(__dirname, "../../frontend/dist")
+  )
 );
 
-e.get("/github", async (_, r) => {
-  r.send(GH);
+app.get("/github", async (req, res, next) => {
+  try {
+    res.send(GH);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/iframe", A, async (q, r) => {
-  r.send(await F(q.query.g, q.query.y));
+app.get("/iframe", authenticate, async (req, res, next) => {
+  try {
+    const result = await getIframe(req.query.g, req.query.y);
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/foot", A, async (q, r) => {
-  r.send(await G(q.query.e, q.query.c, q.query.n));
+app.get("/foot", authenticate, async (req, res, next) => {
+  try {
+    const result = await getPrint(req.query.e, req.query.c, req.query.n);
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/ref", async (q, r) => {
-  await R(q.headers.t, q.headers.f);
-  r.sendStatus(200);
+app.get("/ref", async (req, res, next) => {
+  try {
+    await saveRef(req.headers.t, req.headers.f);
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/les", async (q, r) => {
-  r.send((await new M(MA).users.getMetadataByToken(q.headers.m)).publicAddress);
+app.get("/les", async (req, res, next) => {
+  try {
+    const magicClient = new Magic(MA);
+    const metadata = await magicClient.users.getMetadataByToken(req.headers.m);
+    res.send(metadata.publicAddress);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/info", async (q, r) => {
-  r.send(await I(q.query.addr));
+app.get("/info", async (req, res, next) => {
+  try {
+    const info = await getOnchainInfo(req.query.addr);
+    res.send(info);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/m", async (_, r) => {
-  await mm();
-  r.sendStatus(200);
+app.get("/m", async (req, res, next) => {
+  try {
+    await migrate();
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.post("/store", async (q, r) => {
-  await S(q.body, q.headers.addr, q.headers.type, aa);
-  r.sendStatus(200);
+app.post("/store", async (req, res, next) => {
+  try {
+    await storeOnchain(req.body, req.headers.addr, req.headers.type, aa);
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.post("/v", A, u.single("audio"), async (q, r) => {
-  V(q.file, q.body.v, q.body.a, r);
+app.post("/v", authenticate, upload.single("audio"), async (req, res, next) => {
+  try {
+    await processVoice(req.file, req.body.v, req.body.a, res);
+  } catch (error) {
+    next(error);
+  }
 });
 
-e.get("/example", (_, r) => {
-  r.sendFile(path.join(path.dirname(P(import.meta.url)), "../example.html"));
+app.get("/example", (req, res) => {
+  res.sendFile(path.join(__dirname, "../example.html"));
 });
 
-e.get("*", (_, r) => {
-  r.sendFile(
-    path.join(path.dirname(P(import.meta.url)), "../../frontend/dist/index.html"),
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../frontend/dist/index.html")
   );
 });
 
-e.listen(5000, () => {
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error("Express Error:", err);
+  res.status(500).json({ error: err.message || "Internal Server Error" });
+});
+
+app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
