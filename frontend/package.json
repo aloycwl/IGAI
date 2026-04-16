@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@magic-ext/oauth2": "^11.1.0",
+    "axios": "^1.15.0",
     "blockies": "^0.0.2",
+    "ethers": "^5.7.2",
     "magic-sdk": "^29.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
-    "@magic-ext/oauth2": "^11.1.0",
     "serve": "^14.2.4",
     "whatwg-url": "^14.2.0"
   },
