@@ -1,52 +1,61 @@
 import { ci, cr, pr, PK, D, M } from "./config.js";
-import { create as C } from "@web3-storage/w3up-client";
+import { create as createW3upClient } from "@web3-storage/w3up-client";
 import { dbIGAI, dbTo, dbRef, dbGetRef } from "./supabase.js";
-import { NonceManager as O } from "@ethersproject/experimental";
+import { NonceManager } from "@ethersproject/experimental";
 import ethers from "ethers";
 
-let n = null;
+let currentNonce = null;
 let nonceLock = Promise.resolve();
 
-const { providers, Contract, Wallet } = ethers,
-  { JsonRpcProvider } = providers,
-  w = new Wallet(PK, new JsonRpcProvider(pr)),
-  s = new O(w),
-  q = [],
-  c = await C(),
-  r = new Contract(ci, ["function deduct(address, address)"], w).connect(s),
-  t = new Contract(
-    cr,
-    ["function balanceOf(address) view returns (uint256)"],
-    w.provider,
-  );
-let p = false;
+const { providers, Contract, Wallet } = ethers;
+const provider = new providers.JsonRpcProvider(pr);
+const wallet = new Wallet(PK, provider);
+const nonceManager = new NonceManager(wallet);
 
-const b = async () => {
-  if (!c.currentSpace()) {
-    await c.login(M);
-    await c.setCurrentSpace(D);
+const uploadQueue = [];
+const w3upClient = await createW3upClient();
+
+const deductContract = new Contract(ci, ["function deduct(address, address)"], wallet).connect(nonceManager);
+const tokenContract = new Contract(
+  cr,
+  ["function balanceOf(address) view returns (uint256)"],
+  provider
+);
+
+let isProcessingQueue = false;
+
+const authenticateW3up = async () => {
+  if (!w3upClient.currentSpace()) {
+    await w3upClient.login(M);
+    await w3upClient.setCurrentSpace(D);
   }
 };
 
-export async function ref(t, f) {
+export async function ref(toAddress, fromAddress) {
   try {
-    if ((await dbTo(t)) && t != f) {
-      await dbRef(t, f);
-      await new Contract(ci, ["function setRef(address, address)"], w.provider)
-        .connect(s)
-        .setRef(t, f);
+    const isNewTo = await dbTo(toAddress);
+    if (isNewTo && toAddress !== fromAddress) {
+      await dbRef(toAddress, fromAddress);
+
+      const setRefContract = new Contract(ci, ["function setRef(address, address)"], provider).connect(nonceManager);
+      await setRefContract.setRef(toAddress, fromAddress);
     }
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error("Ref Error:", error);
+    throw error;
   }
 }
 
-export async function getInfo(a) {
+export async function getInfo(address) {
   try {
-    const [b, c] = await Promise.all([t.balanceOf(a), dbGetRef(a)]);
-    return { balance: b.toString(), to: c.from || null, from: c.to || [] };
-  } catch (e) {
-    return e;
+    const [balance, refInfo] = await Promise.all([
+      tokenContract.balanceOf(address),
+      dbGetRef(address)
+    ]);
+    return { balance: balance.toString(), to: refInfo.from || null, from: refInfo.to || [] };
+  } catch (error) {
+    console.error("getInfo Error:", error);
+    throw error;
   }
 }
 
@@ -57,12 +66,12 @@ async function getNextNonce() {
     releaseLock = resolve;
   });
   try {
-    if (n === null) {
-      n = await w.provider.getTransactionCount(w.address, "pending");
-      console.log("Fetched initial nonce:", n);
+    if (currentNonce === null) {
+      currentNonce = await provider.getTransactionCount(wallet.address, "pending");
+      console.log("Fetched initial nonce:", currentNonce);
     }
-    const nonceToUse = n;
-    n++;
+    const nonceToUse = currentNonce;
+    currentNonce++;
     return nonceToUse;
   } finally {
     releaseLock();
@@ -70,44 +79,55 @@ async function getNextNonce() {
 }
 
 export async function processQueue() {
-  if (p) return;
-  p = true;
-  while (q.length > 0) {
-    const { d, ra, rt, aa } = q.shift();
+  if (isProcessingQueue) return;
+  isProcessingQueue = true;
+
+  while (uploadQueue.length > 0) {
+    const task = uploadQueue[0]; // Peek at task instead of shifting right away
+    const { data, receiverAddress, recordType, adminAddress, retries = 0 } = task;
+
     try {
-      await b();
+      await authenticateW3up();
+
       const uploadPromise = (async () => {
-        const cid = (
-          await c.uploadFile(new File([JSON.stringify(d)], ""))
-        ).toString();
-        dbIGAI(cid, ra, rt);
+        const file = new File([JSON.stringify(data)], "data.json");
+        const uploadResult = await w3upClient.uploadFile(file);
+        const cid = uploadResult.toString();
+        await dbIGAI(cid, receiverAddress, recordType);
       })();
+
       let txPromise = Promise.resolve();
+
+      // Blockchain code is commented out in original file as well
       // try {
       //   const nonce = await getNextNonce();
-      //   const tx = await r.deduct(ra, aa, { nonce });
+      //   const tx = await deductContract.deduct(receiverAddress, adminAddress, { nonce });
       //   await tx.wait(1);
       // } catch (err) {
-      //   n = await w.provider.getTransactionCount(w.address, "pending");
+      //   currentNonce = await provider.getTransactionCount(wallet.address, "pending");
       //   throw err;
       // }
+
       await Promise.all([uploadPromise, txPromise]);
-    } catch (e) {
-      // if (String(e).includes("Invalid nonce")) {
-      //   n = await w.provider.getTransactionCount(w.address, "pending");
-      //   console.warn("Nonce reset to", n);
-      // }
-      console.error(new Date().toISOString(), "Retrying...", e);
-      q.push({ d, ra, rt, aa });
-      await new Promise((r) => setTimeout(r, 5000));
+      uploadQueue.shift(); // Remove task only on success
+    } catch (error) {
+      console.error(new Date().toISOString(), "Queue task failed:", error);
+
+      if (retries >= 3) {
+        console.error("Task exceeded max retries. Dropping task.");
+        uploadQueue.shift(); // Drop task after 3 retries to prevent blocking queue indefinitely
+      } else {
+        task.retries = retries + 1;
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+      }
     }
-    console.log("Queue left", q.length);
+    console.log("Queue left:", uploadQueue.length);
   }
 
-  p = false;
+  isProcessingQueue = false;
 }
 
-export async function store(d, ra, rt, aa) {
-  q.push({ d, ra, rt, aa });
-  processQueue();
+export async function store(data, receiverAddress, recordType, adminAddress) {
+  uploadQueue.push({ data, receiverAddress, recordType, adminAddress, retries: 0 });
+  processQueue().catch(err => console.error("Unhandled error in queue processing:", err));
 }

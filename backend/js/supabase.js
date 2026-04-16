@@ -1,100 +1,162 @@
-import { createClient as cc } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 import { su, SB } from "./config.js";
 
-const s = cc(su, SB);
+const supabaseClient = createClient(su, SB);
 
-export const dbAuth = async (q, r, next) => {
+export const dbAuth = async (req, res, next) => {
   try {
-    const k = q.headers.auth,
-      { data } = await s.from("keys").select("credit").eq("k", k).single();
-    if (!data || typeof data.credit !== "number" || data.credit <= 0)
-      return r.sendStatus(401);
-    await s
+    const authKey = req.headers.auth;
+    const { data, error } = await supabaseClient
+      .from("keys")
+      .select("credit")
+      .eq("k", authKey)
+      .single();
+
+    if (error) {
+      console.error("Supabase Auth Error:", error);
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    if (!data || typeof data.credit !== "number" || data.credit <= 0) {
+      return res.status(401).json({ error: "Insufficient credits or invalid key" });
+    }
+
+    await supabaseClient
       .from("keys")
       .update({ credit: data.credit - 1 })
-      .eq("k", k);
+      .eq("k", authKey);
+
     next();
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error("Unexpected Auth Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-export async function dbIGAI(a, b, c) {
+export async function dbIGAI(cid, address, type) {
   try {
-    await s.from("igai").insert([{ cid: a, addr: b, type: c }]);
-  } catch (e) {
-    console.log(e);
+    const { error } = await supabaseClient
+      .from("igai")
+      .insert([{ cid, addr: address, type }]);
+
+    if (error) throw error;
+  } catch (error) {
+    console.error("dbIGAI Error:", error);
   }
 }
 
-export async function dbRef(a, b) {
+export async function dbRef(toAddr, fromAddr) {
   try {
-    await s.from("ref").insert([{ to: a, from: b }]);
-  } catch (e) {
-    console.log(e);
+    const { error } = await supabaseClient
+      .from("ref")
+      .insert([{ to: toAddr, from: fromAddr }]);
+
+    if (error) throw error;
+  } catch (error) {
+    console.error("dbRef Error:", error);
   }
 }
 
-export async function dbNew(a, t) {
+export async function dbNew(address, type) {
   try {
-    const q = s.from("igai").select("cid").eq("addr", a);
-    return !(await (t > 2 ? q.gt("type", 2) : q.eq("type", t)).limit(1).single()
-      .data);
-  } catch (e) {
-    return e;
+    let query = supabaseClient.from("igai").select("cid").eq("addr", address);
+
+    if (type > 2) {
+      query = query.gt("type", 2);
+    } else {
+      query = query.eq("type", type);
+    }
+
+    const { data, error } = await query.limit(1).single();
+
+    if (error && error.code !== 'PGRST116') { // PGRST116 is the code for 'no rows returned'
+      console.error("dbNew Query Error:", error);
+    }
+
+    return !data;
+  } catch (error) {
+    console.error("dbNew Exception:", error);
+    return false;
   }
 }
 
-export async function dbTo(a) {
+export async function dbTo(address) {
   try {
-    return !(await s.from("ref").select("to").eq("to", a).limit(1).single())
-      .data;
-  } catch (e) {
-    return e;
+    const { data, error } = await supabaseClient
+      .from("ref")
+      .select("to")
+      .eq("to", address)
+      .limit(1)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+       console.error("dbTo Query Error:", error);
+    }
+
+    return !data;
+  } catch (error) {
+    console.error("dbTo Exception:", error);
+    return false;
   }
 }
 
-export async function dbV(a) {
+export async function dbV(id) {
   try {
-    return (await s.from("vtype").select("type").eq("id", a).single()).data
-      .type;
-  } catch (e) {
-    return e;
+    const { data, error } = await supabaseClient
+      .from("vtype")
+      .select("type")
+      .eq("id", id)
+      .single();
+
+    if (error) throw error;
+
+    return data.type;
+  } catch (error) {
+    console.error("dbV Error:", error);
+    throw error;
   }
 }
 
 export async function dbCID() {
   try {
-    const cid = (
-      await s
-        .from("igai")
-        .select("cid")
-        .or("m.is.null,m.neq.true")
-        .order("id", { ascending: true })
-        .limit(1)
-        .maybeSingle()
-    ).data.cid;
+    const { data, error } = await supabaseClient
+      .from("igai")
+      .select("cid")
+      .or("m.is.null,m.neq.true")
+      .order("id", { ascending: true })
+      .limit(1)
+      .maybeSingle();
 
-    await s.from("igai").update({ m: true }).eq("cid", cid);
+    if (error) throw error;
+    if (!data) return null;
+
+    const cid = data.cid;
+
+    await supabaseClient
+      .from("igai")
+      .update({ m: true })
+      .eq("cid", cid);
     
     return cid;
-  } catch (e) {
-    return e;
+  } catch (error) {
+    console.error("dbCID Error:", error);
+    throw error;
   }
 }
 
-export async function dbGetRef(a) {
+export async function dbGetRef(address) {
   try {
-    const [b, c] = await Promise.all([
-      s.from("ref").select("from").ilike("to", a).limit(1).single(),
-      s.from("ref").select("to").ilike("from", a),
+    const [fromResult, toResult] = await Promise.all([
+      supabaseClient.from("ref").select("from").ilike("to", address).limit(1).single(),
+      supabaseClient.from("ref").select("to").ilike("from", address),
     ]);
 
     return {
-      from: b.data?.from || null,
-      to: c.data ? c.data.map((row) => row.to) : [],
+      from: fromResult.data?.from || null,
+      to: toResult.data ? toResult.data.map((row) => row.to) : [],
     };
-  } catch (e) {
-    return e;
+  } catch (error) {
+    console.error("dbGetRef Error:", error);
+    throw error;
   }
 }
