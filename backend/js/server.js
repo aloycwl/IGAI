@@ -16,7 +16,7 @@ e.use(cors());
 e.use(express.json());
 e.use(
   express.static(
-    path.join(path.dirname(P(import.meta.url)), "../frontend/build"),
+    path.join(path.dirname(P(import.meta.url)), "../../frontend/dist"),
   ),
 );
 
@@ -65,7 +65,7 @@ e.get("/example", (_, r) => {
 
 e.get("*", (_, r) => {
   r.sendFile(
-    path.join(path.dirname(P(import.meta.url)), "../frontend/build/index.html"),
+    path.join(path.dirname(P(import.meta.url)), "../../frontend/dist/index.html"),
   );
 });
 
