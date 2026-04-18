@@ -120,6 +120,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message || "Internal Server Error" });
 });
 
-app.listen(5000, () => {
+export default app;
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
+}

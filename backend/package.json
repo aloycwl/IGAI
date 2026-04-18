@@ -4,6 +4,7 @@
   "description": "Bridge data from web2 to web3",
   "main": "index.js",
   "scripts": {
+    "test": "node --experimental-vm-modules ../node_modules/jest/bin/jest.js",
     "start": "node js/server.js"
   },
   "repository": {
@@ -37,5 +38,9 @@
     "punycode": "^2.3.1",
     "whatwg-url": "^14.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.2.2"
+  }
 }

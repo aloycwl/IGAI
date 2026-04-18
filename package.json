@@ -10,5 +10,25 @@
     "start:backend": "npm run start --workspace=backend",
     "dev:frontend": "npm run dev --workspace=frontend",
     "build:frontend": "npm run build --workspace=frontend"
+  },
+  "description": "Bridge data from web2 to web3.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aloycwl/IGAI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aloycwl/IGAI/issues"
+  },
+  "homepage": "https://github.com/aloycwl/IGAI#readme",
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "mongodb": "^7.1.1",
+    "supertest": "^7.2.2",
+    "supertest-session": "^5.0.1"
   }
 }
